@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Summary = () => {
+const Summary = ({total}) => {
   return (
     <>
       <div className='box'>
@@ -23,7 +23,7 @@ const Summary = () => {
         </div>
         <footer>
           <span>Total</span>
-          <span>R$ 418</span>
+          <span>R$ {total}</span>
         </footer>
       </div>
       <button>Finalizar Compra</button>

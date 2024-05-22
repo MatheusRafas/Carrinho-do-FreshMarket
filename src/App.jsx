@@ -4,15 +4,97 @@ import PageHeader from './layout/PageHeader';
 import PageTitle from './layout/PageTitle';
 import Summary from './Summary';
 import TableRow from './TableRow';
+import { useEffect, useState } from 'react';
+import {api} from './provider';
+import axios from 'axios';
+
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
+
 
 function App() {
+  const [cart, setCart] = useState([]);
+
+  const productObject = {
+    name: 'produto',
+    category: 'categoria',
+    price: randomNumber(10, 100),
+    quantity: 1,
+  };
+
+  //Acesso ao CRUD
+  const fetchData = () => {
+    api.get('/cart').then((response) => setCart(response.data));
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleAddItem = () => {
+    console.log('disparou handleAddItem');
+
+    api.post('/cart', productObject).then((response) => {
+      console.log(response);
+      fetchData();
+    });
+  };
+
+  const handleRemoveItem = (item) => {
+    console.log('disparou handleRemoveItem');
+    console.log({ item });
+
+    api.delete(`/cart/${item._id}`).then((response) => {
+      console.log(response);
+      fetchData();
+    });
+  };
+
+  const handleUpdateItem = (item, action) => {
+    let newQuantity = item.quantity;
+
+    if(action === 'decrease') {
+      if(newQuantity === 1) {
+        return;
+      }
+      newQuantity -= 1;
+    }
+    if(action === 'increase') {
+      newQuantity += 1;
+    }
+
+    const newData = {...item, quantity: newQuantity};
+    delete newData._id;
+
+    console.log({ newData });
+    api.put(`/cart/${item._id}`, newData).then((response) => {
+      console.log({response});
+      fetchData();
+    });
+  };
+
+  const getTotal = () => {
+    let sum = 0;
+
+    for (let item of cart) {
+      sum += item.price * item.quantity;
+    }
+
+    return sum;
+  };
+
+  const cartTotal = getTotal();
+  
   return (
     <>
       <PageHeader />
       <main>
         <PageTitle data={'Sua compra'} />
         <div className='content'>
-          <section>
+          <section> 
+            <button onClick={handleAddItem} style={{ padding:"5px 10px", marginBottom: 15, borderRadius: "51px" }}>Adicionar ao carrinho</button>
             <table>
               <thead>
                 <tr>
@@ -24,12 +106,26 @@ function App() {
                 </tr>
               </thead>
               <tbody>
-                <TableRow />
+                {cart.map((item) => (
+                  <TableRow 
+                    key={item._id} 
+                    data ={item} 
+                    handleRemoveItem={handleRemoveItem}
+                    handleUpdateItem={handleUpdateItem}
+                  />
+                ))}
+                {cart.length === 0 && (
+                  <tr>
+                    <td colSpan='5' style={{ textAlign: 'center' }}>
+                      <b>Carrinho de compras vazio.</b>
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </section>
           <aside>
-            <Summary />
+            <Summary total={cartTotal}/>
           </aside>
         </div>
       </main>
