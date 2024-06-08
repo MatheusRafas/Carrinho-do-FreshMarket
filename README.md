@@ -1,8 +1,19 @@
-# React + Vite
+<h1>Projeto FreshMarket</h1>
+<p>O objetivo desta aplicação foi desenvolver um carrinho de compras para o 
+marketplace FreshMarket. Para isso, utilizamos uma combinação de tecnologias avançadas. 
+React, em conjunto com Vite, formou a base principal da aplicação, proporcionando uma 
+experiência de desenvolvimento rápida e eficiente. Para a estilização do frontend, 
+empregamos Sass, garantindo um design moderno e responsivo.</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h1>Tecnologias</h1>
+<li>React</li>
+<li>Vite</li>
+<li>Sass</li>
+<li>Yarn</li>
+<li>Axios</li>
+<li>API CRUD CRUD</li>
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<h1>Sobre a API</h1>
+<p>A API do CRUD possui uma limitação de 100 requisições por dia. Após atingir esse 
+limite, o serviço será interrompido e você precisará aguardar a renovação do período de 24 
+horas para continuar utilizando a API</p>
