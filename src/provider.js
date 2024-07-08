@@ -1,6 +1,6 @@
 import axios from "axios"; 
 
 export const api = axios.create({
-    baseURL: 'https://crudcrud.com/api/5d709e47116540a698e5ec31cf0b4c46/',
+    baseURL: 'https://crudcrud.com/api/b7d260c15bb444dcb8fde3757b218bf3/',
     timeout: 10000,
 });
