@@ -1,9 +1,13 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import mysql from 'mysql2/promise';
+import cors from 'cors';
 
 const app = express();
 const PORT = 5000;
+
+// Middleware para permitir CORS
+app.use(cors());
 
 // Middleware para parsear corpos de requisição JSON
 app.use(bodyParser.json());

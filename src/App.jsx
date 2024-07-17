@@ -20,13 +20,13 @@ function App() {
   }, []);
 
   const fetchData = () => {
-    axios.get('http://localhost:3306/cart')
+    axios.get('http://localhost:5000/cart')
       .then(response => setCart(response.data))
       .catch(error => console.error('Erro ao buscar dados:', error));
   };
 
   const handleAddItem = () => {
-    axios.post('http://localhost:3306/cart', productObject)
+    axios.post('http://localhost:5000/cart', productObject)
       .then(response => {
         console.log(response.data);
         fetchData();
@@ -35,7 +35,7 @@ function App() {
   };
 
   const handleRemoveItem = (item) => {
-    axios.delete(`http://localhost:3306/cart/${item.id}`)
+    axios.delete(`http://localhost:5000/cart/${item.id}`)
       .then(response => {
         console.log(response.data);
         fetchData();
@@ -58,7 +58,7 @@ function App() {
 
     const newData = { ...item, quantity: newQuantity };
 
-    axios.put(`http://localhost:3306/cart/${item.id}`, newData)
+    axios.put(`http://localhost:5000/cart/${item.id}`, newData)
       .then(response => {
         console.log(response.data);
         fetchData();
