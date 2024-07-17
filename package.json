@@ -11,9 +11,13 @@
   },
   "dependencies": {
     "axios": "^1.3.2",
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "mysql2": "^3.10.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.77.2"
+    "sass": "^1.77.2",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
@@ -25,5 +29,10 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "vite": "^5.2.0"
   },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+  "description": "<h1>Projeto FreshMarket</h1>\r <p>O objetivo desta aplicação foi desenvolver um carrinho de compras para o \r marketplace FreshMarket. Para isso, utilizamos uma combinação de tecnologias avançadas. \r React, em conjunto com Vite, formou a base principal da aplicação, proporcionando uma \r experiência de desenvolvimento rápida e eficiente. Para a estilização do frontend, \r empregamos Sass, garantindo um design moderno e responsivo.</p>",
+  "main": "vite.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
