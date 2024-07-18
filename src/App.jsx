@@ -1,4 +1,4 @@
-import './styles.scss';
+import './styles/styles.scss';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import PageHeader from './layout/PageHeader';
