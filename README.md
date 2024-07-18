@@ -11,9 +11,4 @@ empregamos Sass, garantindo um design moderno e responsivo.</p>
 <li>Sass</li>
 <li>Yarn</li>
 <li>Axios</li>
-<li>API CRUD CRUD</li>
 
-<h1>Sobre a API</h1>
-<p>A API do CRUD possui uma limitação de 100 requisições por dia. Após atingir esse 
-limite, o serviço será interrompido e você precisará aguardar a renovação do período de 24 
-horas para continuar utilizando a API</p>
