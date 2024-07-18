@@ -11,4 +11,9 @@ empregamos Sass, garantindo um design moderno e responsivo.</p>
 <li>Sass</li>
 <li>Yarn</li>
 <li>Axios</li>
+<li>Express</li>
+<li>Jest</li>
+<li>Cors</li>
+<li>MySQL</li>
+<li>Babel</li>
 
