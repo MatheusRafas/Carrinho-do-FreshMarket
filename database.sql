@@ -1,8 +1,8 @@
 -- Criação do banco de dados
-CREATE DATABASE IF NOT EXISTS freshmarket;
+CREATE DATABASE IF NOT EXISTS shopping_cart;
 
 -- Seleciona o banco de dados
-USE freshmarket;
+USE shopping_cart;
 
 -- Criação da tabela `cart`
 CREATE TABLE IF NOT EXISTS cart (
