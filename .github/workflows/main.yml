@@ -1,0 +1,94 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: rootpassword
+          MYSQL_DATABASE: freshmarket
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Configuração do Banco de Dados
+      - name: Set up MySQL database
+        run: |
+          sudo apt-get update
+          sudo apt-get install mysql-client -y
+          mysql -h 127.0.0.1 -P 3306 -u root -prootpassword -e "CREATE DATABASE IF NOT EXISTS freshmarket;"
+          mysql -h 127.0.0.1 -P 3306 -u root -prootpassword freshmarket < database.sql
+
+      # Instalação do Node.js e dependências
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: |
+          npm install
+          cd client && npm install
+          cd ..
+
+      # Execução de testes unitários e de integração
+      - name: Run tests
+        run: |
+          npm test
+          cd client && npm test -- --watchAll=false
+          cd ..
+
+      # Construção do front-end React
+      - name: Build React application
+        run: |
+          cd client
+          npm run build
+          cd ..
+
+      # Construção do back-end Express.js
+      - name: Build Express.js backend
+        run: |
+          npm run build:server
+
+      # Execução de testes para o servidor Express.js
+      - name: Run server tests
+        run: |
+          npm run test:server
+
+      # Implantação no servidor de produção
+      - name: Deploy to production
+        if: success() && github.event_name == 'push'
+        run: |
+          echo "Deploying to production..."
+          # Comandos para implantar a aplicação no servidor de produção (exemplo: usar SSH, scripts de implantação)
+
+      # Notificação de sucesso ou falha do pipeline
+      - name: Notify on Slack
+        if: always()
+        uses: rtCamp/action-slack-notify@v3
+        with:
+          status: ${{ job.status }}
+          text: |
+            Job ${{ job.status }} on *${{ github.repository }}*
+            Commit: ${{ github.sha }}
+            Author: ${{ github.actor }}
+            Workflow: ${{ github.workflow }}
