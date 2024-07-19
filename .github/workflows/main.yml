@@ -17,7 +17,7 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: rootpassword
-          MYSQL_DATABASE: freshmarket
+          MYSQL_DATABASE: shopping_cart
         ports:
           - 3306:3306
         options: >-
@@ -78,8 +78,7 @@ jobs:
       - name: Deploy to production
         if: success() && github.event_name == 'push'
         run: |
-          echo "Deploying to production..."
-          # Comandos para implantar a aplicação no servidor de produção (exemplo: usar SSH, scripts de implantação)
+  
 
       # Notificação de sucesso ou falha do pipeline
       - name: Notify on Slack
