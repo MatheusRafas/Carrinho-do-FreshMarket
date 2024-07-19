@@ -2,9 +2,12 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mysql from 'mysql2/promise';
 import cors from 'cors';
+import dotenv from 'dotenv';
+
+dotenv.config(); // Carrega variáveis de ambiente do .env
 
 const app = express();
-const PORT = 5000;
+const port = process.env.PORT || 3000;
 
 // Middleware para permitir CORS
 app.use(cors());
@@ -13,13 +16,15 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Configuração da conexão com o MySQL
-const connection = await mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '12345',
-  database: 'shopping_cart',
+const dbConfig = {
+  host: 'bc1lsxrljn9vby6i3rut-mysql.services.clever-cloud.com',
+  user: 'uain2uoybqt3ybkc',
+  password: 'hZSoA5j0GL2L2vly6Ap8',
+  database: 'bc1lsxrljn9vby6i3rut',
   port: 3306
-});
+};
+
+const connection = await mysql.createConnection(dbConfig);
 
 // Exemplo de rota GET para buscar todos os itens do carrinho
 app.get('/cart', async (req, res) => {
@@ -82,6 +87,6 @@ app.delete('/cart/:id', async (req, res) => {
 });
 
 // Iniciar o servidor
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
