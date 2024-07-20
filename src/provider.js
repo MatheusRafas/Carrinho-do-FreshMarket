@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'http://localhost:3000', // URL do backend
+  baseURL: 'https://carrinho-do-freshmarket.onrender.com', // URL do backend
 });
