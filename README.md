@@ -30,7 +30,7 @@ Os testes foram realizados com Jest, assegurando a confiabilidade do código e a
 <p>➡︎ Em seguida realizar o comando para rodar o arquivo "server.js":</p>
 <p><strong>node server.js</strong></p>
 
-<h1>Iniciando os testes com o JEST</h1>
+<h1>Iniciando os testes com o JEST🧪</h1>
 <li>Para iniciar os teste com o Jest, digite no terminal o comando:</li>
 <p><strong>npm test</strong></p>
 
