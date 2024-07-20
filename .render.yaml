@@ -1,11 +1,11 @@
 services:
   - type: web
-    name: seu-nome-do-app
+    name: carrinho-freshmarket-backend
     env: node
     plan: free
     autoDeploy: true
     repo: https://github.com/MatheusRafas/Carrinho-do-FreshMarket/tree/backend
-    branch: main
+    branch: backend
     startCommand: npm start
     envVars:
       - key: DATABASE_URL
