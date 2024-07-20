@@ -20,18 +20,17 @@ Os testes foram realizados com Jest, assegurando a confiabilidade do código e a
 <h1>Iniciando o Projeto 🛠️</h1>
 <h2>Frontend</h2>
 <li>Para que possa rodar o frontend é necessário inserir no terminal o comando:</li>
-<p><strong>npm run dev</strong></p>
-<p>➡︎ Ele informará o link de acesso</p>
+<p><strong>➡︎ npm run dev</strong></p>
+<p>Ele informará o link de acesso</p>
 
 <h2>Backend</h2>
 <li>Para que possa rodar o backend (onde contém a conexão com o BD MySql) é necesário realizar os seguintes comandos:</li>
-<p>➡︎ Apontar para a pasta onde contém o backend:</p>
-<p><strong>cd src</strong></p>
-<p>➡︎ Em seguida realizar o comando para rodar o arquivo "server.js":</p>
-<p><strong>node server.js</strong></p>
+<p>Apontar para a pasta onde contém o backend:</p>
+<p><strong>➡︎ cd src</strong></p>
+<p>Em seguida realizar o comando para rodar o arquivo "server.js":</p>
+<p><strong>➡︎ node server.js</strong></p>
 
 <h1>Iniciando os testes com o JEST🧪</h1>
 <li>Para iniciar os teste com o Jest, digite no terminal o comando:</li>
-<p><strong>npm test</strong></p>
-
-<p>➡︎ Ele irá rodar um banco de dados local com o MySQL</p>
+<p><strong>➡︎ npm test</strong></p>
+<p>Ele irá rodar um banco de dados local com o MySQL</p>
