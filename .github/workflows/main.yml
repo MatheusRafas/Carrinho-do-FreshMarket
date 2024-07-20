@@ -17,7 +17,7 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: rootpassword
-          MYSQL_DATABASE: shopping_cart
+          MYSQL_DATABASE: freshmarket
         ports:
           - 3306:3306
         options: >-
@@ -54,7 +54,11 @@ jobs:
       - name: Run tests
         run: |
           npm test
-          cd client && npm test -- --watchAll=false
+
+      - name: Run client tests
+        run: |
+          cd client
+          npm test -- --watchAll=false
           cd ..
 
       # Construção do front-end React
@@ -78,7 +82,9 @@ jobs:
       - name: Deploy to production
         if: success() && github.event_name == 'push'
         run: |
-  
+          # Comandos de implantação, por exemplo:
+          # scp -r ./build user@server:/path/to/production
+          # ssh user@server "pm2 restart all"
 
       # Notificação de sucesso ou falha do pipeline
       - name: Notify on Slack
