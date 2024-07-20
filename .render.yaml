@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: seu-nome-do-app
+    env: node
+    plan: free
+    autoDeploy: true
+    repo: https://github.com/MatheusRafas/Carrinho-do-FreshMarket/tree/backend
+    branch: main
+    startCommand: npm start
+    envVars:
+      - key: DATABASE_URL
+        value: bc1lsxrljn9vby6i3rut-mysql.services.clever-cloud.com
