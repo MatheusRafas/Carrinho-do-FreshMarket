@@ -20,13 +20,13 @@ function App() {
   }, []);
 
   const fetchData = () => {
-    axios.get('http://localhost:3000/cart')
+    axios.get('https://carrinho-do-freshmarket.onrender.com/cart')
       .then(response => setCart(response.data))
       .catch(error => console.error('Erro ao buscar dados:', error));
   };
 
   const handleAddItem = () => {
-    axios.post('http://localhost:3000/cart', productObject)
+    axios.post('https://carrinho-do-freshmarket.onrender.com/cart', productObject)
       .then(response => {
         console.log(response.data);
         fetchData();
@@ -35,7 +35,7 @@ function App() {
   };
 
   const handleRemoveItem = (item) => {
-    axios.delete(`http://localhost:3000/cart/${item.id}`)
+    axios.delete(`https://carrinho-do-freshmarket.onrender.com/cart/${item.id}`)
       .then(response => {
         console.log(response.data);
         fetchData();
@@ -58,7 +58,7 @@ function App() {
 
     const newData = { ...item, quantity: newQuantity };
 
-    axios.put(`http://localhost:3000/cart/${item.id}`, newData)
+    axios.put(`https://carrinho-do-freshmarket.onrender.com/cart/${item.id}`, newData)
       .then(response => {
         console.log(response.data);
         fetchData();
