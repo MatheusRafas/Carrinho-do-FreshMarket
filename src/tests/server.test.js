@@ -5,7 +5,7 @@ const cors = require('cors');
 const mysql = require('mysql2');
 
 const app = express();
-const PORT = 5000;
+const PORT = 3000;
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -75,7 +75,7 @@ app.delete('/cart/:id', (req, res) => {
 // Testes utilizando Jest e Supertest
 describe('API Tests', () => {
   afterAll(async () => {
-    // Limpar ou restaurar o estado do banco de dados após os testes, se necessário
+    // Limpar ou restaurar o estado do banco de dados após os testes
     await pool.end();
   });
 
