@@ -17,7 +17,7 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: rootpassword
-          MYSQL_DATABASE: freshmarket
+          MYSQL_DATABASE: shopping_cart
         ports:
           - 3306:3306
         options: >-
@@ -35,8 +35,8 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install mysql-client -y
-          mysql -h 127.0.0.1 -P 3306 -u root -prootpassword -e "CREATE DATABASE IF NOT EXISTS freshmarket;"
-          mysql -h 127.0.0.1 -P 3306 -u root -prootpassword freshmarket < database.sql
+          mysql -h 127.0.0.1 -P 3306 -u root -prootpassword -e "CREATE DATABASE IF NOT EXISTS shopping_cart;"
+          mysql -h 127.0.0.1 -P 3306 -u root -prootpassword shopping_cart < database.sql
 
       # Instalação do Node.js e dependências
       - name: Set up Node.js
@@ -86,14 +86,4 @@ jobs:
           # scp -r ./build user@server:/path/to/production
           # ssh user@server "pm2 restart all"
 
-      # Notificação de sucesso ou falha do pipeline
-      - name: Notify on Slack
-        if: always()
-        uses: rtCamp/action-slack-notify@v3
-        with:
-          status: ${{ job.status }}
-          text: |
-            Job ${{ job.status }} on *${{ github.repository }}*
-            Commit: ${{ github.sha }}
-            Author: ${{ github.actor }}
-            Workflow: ${{ github.workflow }}
+      
