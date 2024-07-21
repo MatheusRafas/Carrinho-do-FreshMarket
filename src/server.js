@@ -26,7 +26,7 @@ const dbConfig = {
 
 const connection = await mysql.createConnection(dbConfig);
 
-// Exemplo de rota GET para buscar todos os itens do carrinho
+// Rota GET para buscar todos os itens do carrinho
 app.get('/cart', async (req, res) => {
   try {
     const [results] = await connection.query('SELECT * FROM cart');
@@ -37,7 +37,7 @@ app.get('/cart', async (req, res) => {
   }
 });
 
-// Exemplo de rota POST para adicionar um item ao carrinho
+// Rota POST para adicionar um item ao carrinho
 app.post('/cart', async (req, res) => {
   const { name, category, price, quantity } = req.body;
   const sql = 'INSERT INTO cart (name, category, price, quantity) VALUES (?, ?, ?, ?)';
