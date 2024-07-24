@@ -5,8 +5,6 @@ import PageHeader from './layout/PageHeader';
 import PageTitle from './layout/PageTitle';
 import Summary from './Summary';
 import TableRow from './TableRow';
-import { api } from './provider';
-
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -17,18 +15,20 @@ function App() {
     quantity: 1,
   });
 
+  const BACKEND_URL = 'https://carrinho-do-freshmarket.onrender.com';
+
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = () => {
-    api.get('/cart')
+    axios.get(`${BACKEND_URL}/cart`)
       .then(response => setCart(response.data))
       .catch(error => console.error('Erro ao buscar dados:', error));
   };
   
   const handleAddItem = () => {
-    api.post('/cart', productObject)
+    axios.post(`${BACKEND_URL}/cart`, productObject)
       .then(response => {
         console.log(response.data);
         fetchData();
@@ -37,7 +37,7 @@ function App() {
   };
   
   const handleRemoveItem = (item) => {
-    api.delete(`/cart/${item.id}`)
+    axios.delete(`${BACKEND_URL}/cart/${item.id}`)
       .then(response => {
         console.log(response.data);
         fetchData();
@@ -60,14 +60,13 @@ function App() {
   
     const newData = { ...item, quantity: newQuantity };
   
-    api.put(`/cart/${item.id}`, newData)
+    axios.put(`${BACKEND_URL}/cart/${item.id}`, newData)
       .then(response => {
         console.log(response.data);
         fetchData();
       })
       .catch(error => console.error('Erro ao atualizar item:', error));
   };
-  
   
   const getTotal = () => {
     let sum = 0;
