@@ -20,32 +20,32 @@ function App() {
   }, []);
 
   const fetchData = () => {
-    axios.get('http://localhost:3000/cart')
+    api.get('/cart')
       .then(response => setCart(response.data))
       .catch(error => console.error('Erro ao buscar dados:', error));
   };
-
+  
   const handleAddItem = () => {
-    axios.post('http://localhost:3000/cart', productObject)
+    api.post('/cart', productObject)
       .then(response => {
         console.log(response.data);
         fetchData();
       })
       .catch(error => console.error('Erro ao adicionar item:', error));
   };
-
+  
   const handleRemoveItem = (item) => {
-    axios.delete(`http://localhost:3000/cart/${item.id}`)
+    api.delete(`/cart/${item.id}`)
       .then(response => {
         console.log(response.data);
         fetchData();
       })
       .catch(error => console.error('Erro ao remover item:', error));
   };
-
+  
   const handleUpdateItem = (item, action) => {
     let newQuantity = item.quantity;
-
+  
     if (action === 'decrease') {
       if (newQuantity === 1) {
         return;
@@ -55,17 +55,18 @@ function App() {
     if (action === 'increase') {
       newQuantity += 1;
     }
-
+  
     const newData = { ...item, quantity: newQuantity };
-
-    axios.put(`http://localhost:3000/cart/${item.id}`, newData)
+  
+    api.put(`/cart/${item.id}`, newData)
       .then(response => {
         console.log(response.data);
         fetchData();
       })
       .catch(error => console.error('Erro ao atualizar item:', error));
   };
-
+  
+  
   const getTotal = () => {
     let sum = 0;
     for (let item of cart) {
