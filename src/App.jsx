@@ -5,6 +5,8 @@ import PageHeader from './layout/PageHeader';
 import PageTitle from './layout/PageTitle';
 import Summary from './Summary';
 import TableRow from './TableRow';
+import { api } from './provider';
+
 
 function App() {
   const [cart, setCart] = useState([]);
