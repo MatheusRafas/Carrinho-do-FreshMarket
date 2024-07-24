@@ -17,19 +17,24 @@ app.use(bodyParser.json());
 
 // Configuração da conexão com o MySQL
 const dbConfig = {
-  host: 'bc1lsxrljn9vby6i3rut-mysql.services.clever-cloud.com',
-  user: 'uain2uoybqt3ybkc',
-  password: 'hZSoA5j0GL2L2vly6Ap8',
-  database: 'bc1lsxrljn9vby6i3rut',
-  port: 3306
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT || 3306,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 };
 
-const connection = await mysql.createConnection(dbConfig);
+const pool = mysql.createPool(dbConfig);
 
 // Rota GET para buscar todos os itens do carrinho
 app.get('/cart', async (req, res) => {
   try {
+    const connection = await pool.getConnection();
     const [results] = await connection.query('SELECT * FROM cart');
+    connection.release();
     res.json(results);
   } catch (error) {
     console.error('Erro ao buscar itens do carrinho:', error);
@@ -42,7 +47,9 @@ app.post('/cart', async (req, res) => {
   const { name, category, price, quantity } = req.body;
   const sql = 'INSERT INTO cart (name, category, price, quantity) VALUES (?, ?, ?, ?)';
   try {
+    const connection = await pool.getConnection();
     const [result] = await connection.query(sql, [name, category, price, quantity]);
+    connection.release();
     const newItem = { id: result.insertId, name, category, price, quantity };
     res.json(newItem);
   } catch (error) {
@@ -57,7 +64,9 @@ app.put('/cart/:id', async (req, res) => {
   const { name, category, price, quantity } = req.body;
   const sql = 'UPDATE cart SET name = ?, category = ?, price = ?, quantity = ? WHERE id = ?';
   try {
+    const connection = await pool.getConnection();
     const [result] = await connection.query(sql, [name, category, price, quantity, itemId]);
+    connection.release();
     if (result.affectedRows > 0) {
       res.json({ message: `Item ${itemId} atualizado com sucesso` });
     } else {
@@ -74,7 +83,9 @@ app.delete('/cart/:id', async (req, res) => {
   const itemId = req.params.id;
   const sql = 'DELETE FROM cart WHERE id = ?';
   try {
+    const connection = await pool.getConnection();
     const [result] = await connection.query(sql, [itemId]);
+    connection.release();
     if (result.affectedRows > 0) {
       res.json({ message: `Item ${itemId} deletado com sucesso` });
     } else {
