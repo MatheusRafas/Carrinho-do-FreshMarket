@@ -12,3 +12,5 @@ CREATE TABLE IF NOT EXISTS cart (
     price DECIMAL(10, 2) NOT NULL,
     quantity INT NOT NULL
 );
+
+--sd
