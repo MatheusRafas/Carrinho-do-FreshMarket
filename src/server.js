@@ -17,11 +17,11 @@ app.use(bodyParser.json());
 
 // Configuração da conexão com o MySQL
 const dbConfig = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT || 3306,
+  host: 'bc1lsxrljn9vby6i3rut-mysql.services.clever-cloud.com',
+  user: 'uain2uoybqt3ybkc',
+  password: 'hZSoA5j0GL2L2vly6Ap8',
+  database: 'bc1lsxrljn9vby6i3rut',
+  port: 3306,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
