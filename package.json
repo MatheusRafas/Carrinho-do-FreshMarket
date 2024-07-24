@@ -43,6 +43,7 @@
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "description": "<h1>Projeto FreshMarket</h1>\r <p>O objetivo desta aplicação foi desenvolver um carrinho de compras para o \r marketplace FreshMarket. Para isso, utilizamos uma combinação de tecnologias avançadas. \r React, em conjunto com Vite, formou a base principal da aplicação, proporcionando uma \r experiência de desenvolvimento rápida e eficiente. Para a estilização do frontend, \r empregamos Sass, garantindo um design moderno e responsivo.</p>",
+  "proxy": "https://carrinho-do-freshmarket.onrender.com",
   "main": "vite.config.js",
   "keywords": [],
   "author": "",
