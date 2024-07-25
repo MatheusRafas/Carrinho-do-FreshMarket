@@ -7,10 +7,6 @@ const Summary = ({total}) => {
         <header>Resumo da compra</header>
         <div className='info'>
           <div>
-            <span>Sub-total</span>
-            <span>R$ 418</span>
-          </div>
-          <div>
             <span>Frete</span>
             <span>Gratuito</span>
           </div>
